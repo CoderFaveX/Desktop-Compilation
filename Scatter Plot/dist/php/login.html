@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login -> Scatter Firm</title>
+    <link rel="stylesheet" href="../../sass/logPage.css">
+    <link rel="stylesheet" href="../css/w3.css">
+    <link rel="stylesheet" href="https://kit.fontawesome.com/0a68c7f4ca.css" crossorigin="anonymous">
+    <script>
+        window.onload = () => {
+            let inp = document.querySelector(".i");
+            let reveal = document.getElementById("mechanism");
+            let count = 0;
+            let email = document.getElementById("em");
+            let cPass = document.getElementById("ps");
+            reveal.onclick = () => {
+                count++;
+                if (count % 2 != 0) {
+                    inp.type = "text";
+                    reveal.classList.add('fa-eye-slash');
+                    reveal.classList.remove('fa-eye');
+                }
+                else {
+                    inp.type = "password";
+                    reveal.classList.remove('fa-eye-slash');
+                    reveal.classList.add("fa-eye");
+                }
+            };
+            let btn = document.getElementById("log");
+            btn.onclick = () => {
+                let retData = JSON.parse(localStorage.getItem("userScatterData"));
+                for (let i = 0; i < retData.length; i++) {
+                    if (email.value != "" || cPass.value != "") {
+                        if (retData != null) {
+                            if (retData[i].userEmail == email.value && retData[i].userPassword == cPass.value) {
+                                alert("Sucessful Login");
+                                location.href = "../index.html";
+                                return true;
+                            }
+                            alert("Invalid email or password");
+                            return false;
+                        }
+                        alert("You haven't signed up yet. Sign Up and try again");
+                        return false;
+                    }
+                    alert("Pls fill all fields");
+                    return false;
+                    }
+                }
+        }
+    </script>
+</head>
+<body class="thisBody">
+    <div class="main">
+        <div class="company"></div>
+        <div class="main-form">
+            <div class="form-img">
+                <p><i class="fas fa-headset"></i>Scatter Plot</p>
+            </div>
+            <div class="input-div">
+                <i class="fa fa-envelope w3-blue"></i>
+                <input id="em" type="text" name="email" placeholder="Email" value="">
+            </div>
+            <p class="w3-text-gray" style="padding: 0; margin: -.5rem 0;"></p>
+            <div class="input-div s-div">
+                <i class="fa fa-key w3-blue"></i>
+                <input id="ps" value="" type="password" name="password" placeholder="Password" class="i">
+                <i class="fa w3-blue fa-eye" style="cursor: pointer;" id="mechanism"></i>
+            </div>
+            <p class="w3-text-gray" style="padding: 0; margin: -.5rem 0;"></p>
+            <div class="btn-div"><button id="log" class="w3-button w3-blue w3-hover-indigo" type="submit">Login</button>
+            </div>
+            <div class="function" style="text-align: center;">
+                <a href="#" class="w3-blue w3" style="text-decoration: none;">Forgot Password</a>
+                <a href="./signup.html" class="w3-bar-item w3-button w3-dark-gray">Sign Up</a>
+                <input disabled value="Do it all with Scatter Plot"
+                    style="outline: 0; font-size: 13px; word-spacing: -1px;" class="w3-input" type="text"
+                    name="text" id="no_reg">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

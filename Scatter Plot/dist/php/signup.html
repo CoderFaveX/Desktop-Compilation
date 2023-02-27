@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up -> Scatter Plot</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://kit.fontawesome.com/0a68c7f4ca.css" crossorigin="anonymous">
+    <script>
+        window.addEventListener("load", () => {
+            var countries = [
+                    "Afghanistan","Albania","Algeria",
+                    "Andorra","Angola","Anguilla","Antigua &amp; Barbuda",
+                    "Argentina","Armenia","Aruba","Australia","Austria",
+                    "Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados",
+                    "Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia",
+                    "Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands",
+                    "Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon",
+                    "Canada","Cape Verde","Cayman Islands","Central Arfrican Republic",
+                    "Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica",
+                    "Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark",
+                    "Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador",
+                    "Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands",
+                    "Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies",
+                    "Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland",
+                    "Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana",
+                    "Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran",
+                    "Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan",
+                    "Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon",
+                    "Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia",
+                    "Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania",
+                    "Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat",
+                    "Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands",
+                    "Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger",
+                    "Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine",
+                    "Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal",
+                    "Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon",
+                    "Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles",
+                    "Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa",
+                    "South Korea","South Sudan","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent",
+                    "Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania",
+                    "Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan",
+                    "Turks &amp; Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom",
+                    "United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam",
+                    "Virgin Islands (US)","Yemen","Zambia","Zimbabwe"
+                ];
+            for (let i = 0; i < countries.length; i++) {
+                let elem = document.createElement("option");
+                elem.classList.add("opt");
+                elem.value = countries[i].toLowerCase();
+                elem.innerHTML = countries[i];
+                document.getElementById("sel").append(elem);
+            }
+            document.getElementById("fNo").onkeydown = (e) => {
+                if (e.key == "-" || ( e.ctrlKey + e.keyCode == 187 ) || e.key == "e") {
+                    e.preventDefault();
+                }
+            }
+            let pass = document.getElementById("pSwd"),
+                repPass = document.getElementById("rPswd");
+            function prevent(elem) {
+                elem.oncopy = () => { return false };
+                elem.oncut = () => { return false };
+                elem.ondrop = () => { return false };
+                elem.ondrag = () => { return false };
+                elem.ondragStart = () => { return false };
+                elem.onpaste = () => { return false };
+            }
+            prevent(pass);
+            prevent(repPass);
+            let fName = document.getElementById("fName"),
+                lName = document.getElementById("lName"),
+                email = document.getElementById("email"),
+                dob = document.getElementById("dob"),
+                sel = document.getElementById("sel"),
+                pNo = document.getElementById("fNo"),
+                addr = document.getElementById("aDdr"),
+                pswd = document.getElementById("pSwd"),
+                rpswd = document.getElementById("rPswd"),
+                btn = document.getElementById("butt"),
+                insert = false;
+            
+            btn.onclick = () => {
+                if (
+                    fName.value != "" &&
+                    lName.value != "" &&
+                    email.value != "" &&
+                    dob.value != "" &&
+                    sel.innerHTML != "Select country" &&
+                    pNo.value != "" &&
+                    addr.value != "" &&
+                    pswd.value != "" &&
+                    fName.value != "" &&
+                    rpswd.value != ""
+                ) {
+                    if (!(pswd.value.match(/^[A-Za-z0-9]*[#*$@&^]/))) {
+                        alert(`
+Password Requirements:
+        Must Contain an Upper Case Letters.
+        Must Contain a no.
+        Must Contain a special character form => * # $ @ & ^
+                        `);
+                        return false;
+                    } else if (pswd.value != rpswd.value) {
+                        alert("Password Are Not The Same");
+                        return false;
+                    } else if (pswd.value > 8) {
+                        alert("Password Must not be less than 8 characters");
+                        return false;
+                    } else if (!(email.checkValidity())) {
+                        alert("Invalid Email Format");
+                        return false;
+                    }
+                    else { 
+                        if (pNo.value.length != 11) {
+                            alert("This phone no. seems unusual, pls try again.")
+                            return false;
+                        }
+                        else {
+                            let userData = [
+                                {
+                                    userFname: fName.value,
+                                    userLname: lName.value,
+                                    userDob: dob.value,
+                                    userCountry: sel.innerHTML,
+                                    userEmail: email.value,
+                                    userPhone: pNo.value,
+                                    userAddr: addr.value,
+                                    userPassword: pswd.value
+                                }
+                            ]
+                            let retData = JSON.parse(localStorage.getItem("userScatterData"));
+                            if (retData == null) {
+                                localStorage.setItem("userScatterData", JSON.stringify(userData));
+                            }else {
+                                for (let i = 0; i < retData.length; i++) {
+                                    if (retData[i].userEmail == email.value) {
+                                        alert("The email entered already exists, pls enter a new one.");
+                                        return false;
+                                    } else {
+                                        alert("Sign Up Sucessful");
+                                        localStorage.setItem("userScatterData", JSON.stringify(userData));
+                                        location.reload();
+                                        location.href = "./login.html";
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                alert("Please fill all fields");
+                return false;
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="scatter-plot thisScat">
+        <!-- Head Main -->
+        <div class="scatter-plot_head thisHead">
+            <!-- Navigation Bar -->
+            <div class="nav_bar">
+                <div class="logo" onclick="location.href = '../index.html'">
+                    <i class="fas fa-headphones"></i>
+                    <span>Scatter Plot</span>
+                </div>
+                <div class="drop-nav">
+                    <div class="menu-clk"><i class="fas fa-bars"></i></div>
+                    <div class="link_btn">
+                        <a href="../songList.html">Listen Now</a>
+                        <a href="./php/signup.html">Sign Up</a>
+                        <a href="./php/login.html">Login</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Navigation Bar End -->
+        </div>
+        <!-- Head Main End -->
+        <!-- Login Main -->
+        <form action="./login.html">
+            <div class="scatter-log">
+                <!-- Logo -->
+                <div class="logo">
+                    <i class="fas fa-headset"></i>
+                    <span>Scatter Plot</span>
+                </div>
+                <!-- Inputs Flex -->
+                <div class="flex-div">
+                    <!-- Contain Input -->
+                    <div class="input-div">
+                        <p>First Name</p>
+                        <input type="text" name="fname" id="fName">
+                    </div>
+                    <!-- Contain Input -->
+                    <div class="input-div">
+                        <p>Last Name</p>
+                        <input type="text" name="lname" id="lName">
+                    </div>
+                </div>
+                <!-- Inputs Flex -->
+                <div class="flex-div">
+                    <!-- Contain Input -->
+                    <div class="input-div">
+                        <p>Date Of Birth</p>
+                        <input type="date" name="dob" id="dob">
+                    </div>
+                    <!-- Contain Input -->
+                    <div class="input-div">
+                        <p>Country</p>
+                        <select name="cSel" id="sel">
+                            <option value="select">Select country</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Inputs Flex -->
+                <div class="flex-div">
+                    <!-- Contain Input -->
+                    <div class="input-div">
+                        <p>Email</p>
+                        <input type="email" name="email" id="email">
+                    </div>
+                    <!-- Contain Input -->
+                    <div class="input-div">
+                        <p>Email id</p>
+                        <input type="text" placeholder="not required" name="emailid" id="email">
+                    </div>
+                </div>
+                <!-- Inputs Flex -->
+                <div class="flex-div">
+                    <!-- Contain Input -->
+                    <div class="input-div">
+                        <p>Phone No.</p>
+                        <input type="number" name="fno" id="fNo">
+                    </div>
+                    <!-- Contain Input -->
+                    <div class="input-div">
+                        <p>Address</p>
+                        <input type="text" name="addr" id="aDdr">
+                    </div>
+                </div>
+                <!-- Inputs Flex -->
+                <div class="flex-div">
+                    <!-- Contain Input -->
+                    <div class="input-div">
+                        <p>Password</p>
+                        <input type="text" name="pass" id="pSwd">
+                    </div>
+                    <!-- Contain Input -->
+                    <div class="input-div">
+                        <p>Repeat Password</p>
+                        <input type="text" name="repPass" id="rPswd">
+                    </div>
+                </div>
+                <div class="flex-div">
+                    <div class="submit-btn" id="butt">Register!!</div>
+                </div>
+            </div>
+        </form>
+        <!-- Login Main End  -->
+    </div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+// .thisScat {
+//     background: url(../images/pexels-kaboompics-com-6319.jpg) center;
+//     background-size: cover;
+//     background-repeat: no-repeat;
+//     background-position: center;
+//     height: 100vh;
+// }
+.thisHead { height: auto !important; box-shadow: 0 0 15px #bbb; width: 100%; }
+.scatter-log {
+    @include flex(column, center);
+    width: 500px;
+    border-radius: 10px;
+    margin: 2rem auto;
+    border: 1px solid #000;
+    color: #000;
+    background: #fff;
+    padding: 1rem 2.5rem;
+    box-shadow: 0 0 18px #bbb;
+    .logo {
+        font-weight: 600;
+        font-size: 23px;
+        padding-bottom: 1rem; 
+    }
+    .flex-div {
+        @include flex(row, center);
+        justify-content: space-between !important;
+        width: 100%;
+        padding: 1rem 0;
+        .input-div {
+            p { font-weight: 600; font-size: 17px; }
+            input { 
+                transition: .3s ease-in-out;
+                border: 0; outline: 0; 
+                border-bottom: 1px solid get(grayishBlue); 
+                width: 200px; color: #000 !important;
+                font-size: 15px;
+                &:focus { border-bottom: 1px solid get(veryDarkCyan); }
+                &::-webkit-inner-spin-button { display: none; appearance: none; }
+                &::-webkit-outer-spin-button { display: none; appearance: none; }
+            }
+        }
+        .submit-btn {
+            width: 100%;
+            background: get(pink);
+            color: #fff;
+            font-weight: 700;
+            border-radius: 25px;
+            cursor: pointer;
+            padding: .6rem 0;
+            font-size: 17px;
+            transition: .3s ease-in-out;
+            text-align: center;
+            &:hover {background: rgb(83, 118, 212); box-shadow: 1px 1px 10px #bbb;}
+        }
+    }
+    @include media(520px) {
+        width: 95%;
+        .flex-div {
+            .input-div {
+                p {font-size: 15px;}
+                input, select {width: 150px;}
+            }
+        }
+    }
+    @include media(425px) {
+        .flex-div {
+            flex-direction: column;
+            width: 100% !important;
+            padding: 0;
+            .input-div {
+                padding: 1rem 0;
+                input, select {width: 300px !important;}
+            }
+        }
+    }
+    @include media(360px) {
+        .flex-div .input-div {
+            input, select {width: 250px !important;}
+        }
+    }
+    @include media(310px) {
+        .flex-div .input-div {
+            input, select {width: 200px !important;}
+        }
+    }
+}
