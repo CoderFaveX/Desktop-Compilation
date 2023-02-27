@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listen Now</title>
+    <link rel="stylesheet" href="https://kit.fontawesome.com/0a68c7f4ca.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/w3.css">
+    <script>
+        window.addEventListener("load", () => {
+            let userData = JSON.parse(localStorage.getItem("userScatterData"));
+            if (userData == null) {
+                alert(`
+You haven't signed up yet.\n
+Sign up now!!!!
+                `);
+                location.href = "./php/signup.html";
+                return;
+            }
+            for (let i = 0; i < userData.length; i++) {
+                alert(`Welcome ${userData[i].userFname} ${userData[i].userLname}`);
+                let userInt = document.querySelectorAll(".uname");
+                for (let j = 0; j < userInt.length; j++) {
+                    userInt[j].innerHTML = `${userData[i].userFname} ${userData[i].userLname}`;
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+    
+    <div class="scatter-plot">
+        <!-- Head Main -->
+        <div class="scatter-plot_head this-head">
+            <!-- Navigation Bar -->
+            <div class="nav_bar">
+                <div class="logo" onclick="location.href = './index.html'">
+                    <i class="fas fa-headphones"></i>
+                    <span class="uname"></span>
+                </div>
+                <div class="drop-nav">
+                    <div class="menu-clk"><i class="fas fa-bars"></i></div>
+                    <div class="link_btn">
+                        <a href="./songList.html">Listen Now</a>
+                        <a href="./php/signup.html">Sign Up</a>
+                        <a href="./php/login.html">Login</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Navigation Bar End -->
+            <!-- ***** -->
+            <!-- Header Intro -->
+            <div class="head-intro">
+                <!-- Intro Text -->
+                <div class="head-txt spc-txt flex-div">
+                    <h1>Welcome <span class="uname"></span></h1>
+                    <p>
+                        Nice job registering. Now it's all for free. Get access for millions of songs 
+                        anytime, anywhere. Have Fun with Scatter Plot.
+                    </p>
+                </div>
+                <!-- Intro Img -->
+                <div class="head-txt spc-img flex-div">
+                    <svg height="210" width="500" class="animation">
+                        <polygon points="100,10 40,198 190,78 10,78 160,198" 
+                        style="fill:#999;stroke:#555;stroke-width:5;fill-rule:evenodd;"
+                        />
+                        Sorry, your browser does not support inline SVG.
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!-- Head Main End -->
+        <!-- *** -->
+        <!-- Iframe Main -->
+        <div class="explain-frame">
+            <div class="contain-txt">
+                <p>
+                    This is a school project, threfore we have no stored libraries for music.
+                    But please don't be disappointed.
+                    Below here is an iframe through which you can access google to look for your favourite songs.
+                    Thanks, for your understanding.
+                </p>
+                <div class="c-img"><img src="./images/illustration-grow-together.svg" alt=""></div>
+            </div>
+            <div class="contain-frame">
+                <iframe src="https://www.google.com" frameborder="0"></iframe>
+            </div>
+            <div class="w3-container w3-dark-gray" style=
+                "
+                width: 100%; 
+                padding: 1rem; 
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: left;
+                ">
+                <h3>Main Credits</h3>
+                Project By Maidik Schools. <br>
+                Developer : Favour Ejiofor <br>
+                Instructor : Ter Fimih
+                <h3>Credits</h3>
+                Programming Team. <br> (Maidik Coding Team)<br>
+                Proprietor and Proprietress. <br>
+                Maidik Staff.
+            </div>
+        </div>
+        <!-- Iframe Main End -->
+    </div>
+</body>
+</html>

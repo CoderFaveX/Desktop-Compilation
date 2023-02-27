@@ -1,0 +1,238 @@
+@mixin fontFace($name, $weight, $lUrl) {
+    @font-face {
+        font-family: $name;
+        font-style: normal;
+        font-weight: $weight;
+        src: local($name), $lUrl format('woff');
+    }
+}
+@include fontFace("Poppins", 400, url(../Poppins/Poppins-Light.ttf));
+@include fontFace("Poppins", 500, url(../Poppins/Poppins-Medium.ttf));
+@include fontFace("Poppins", 600, url(../Poppins/Poppins-SemiBold.ttf));
+@include fontFace("Poppins", 700, url(../Poppins/Poppins-Bold.ttf));
+@include fontFace("Open Sans", 600, url(../OpenSans/OpenSans.ttf));
+@include fontFace("Open Sans", 600, url(../OpenSans/OpenSans.ttf));
+img  { height: 100%; width: 100%; }
+$backFont: "Poppins", Consolas, "Courier New", monospace;
+$backFonts: "Open Sans", Consolas, "Courier New", monospace;
+$pryColors: (
+    pink: hsl(322, 100%, 66%),
+    verypaleCyan: hsl(193, 100%, 96%),
+    verydarkCyan: hsl(192, 100%, 9%),
+    grayishBlue: hsl(208, 11%, 55%),
+);
+@mixin flex($dir, $pos) {
+    display: flex;
+    flex-direction: $dir;
+    align-items: $pos;
+    justify-content: $pos;
+}
+@mixin media($pxl) {
+    @media screen and (max-width : $pxl) {
+        @content;
+    }
+}
+@function get($col) {
+    @return map-get($pryColors, $col);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: $backFont;
+}
+/* * Duplicated Style form huddle File * */
+
+.huddle-foot {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding: 4rem 9rem 3rem 9rem;
+    box-shadow: 0 0 20px hsl(191, 41%, 90%);
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    flex-direction: column;
+    border-radius: 16px;
+    background: #fff;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+.huddle-foot h1 {
+    font-weight: 600;
+}
+.huddle-foot button {
+    border: 0;
+    background: get(pink);
+    color: #ffffff;
+    margin: 1rem 0 0 0;
+    outline: 0;
+    padding: 1.5rem 7rem;
+    box-shadow: 0px 4px 6px hsl(208, 29%, 80%);
+    font-size: 18px;
+    cursor: pointer;
+    margin: 2rem 0 0 0;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    transition: .3s ease-in-out;
+    width: fit-content;
+}
+.huddle-foot button:hover {
+    background: hsl(322, 100%, 80%);
+}
+@media screen and (max-width : 1000px) {
+    .huddle-foot h1 {
+        font-size: 24px;
+    }
+    .huddle-foot button {
+        padding: 1rem 4rem;
+    }
+}
+@media screen and (max-width : 860px) {
+    .huddle-foot button {
+        font-size: 15px;
+    }
+}
+@media screen and (max-width : 810px) {
+    .huddle-foot  {
+        width: 80%;
+    }
+}
+@media screen and (max-width : 400px) {
+    .huddle-foot  {
+        width: 90%;
+        padding: 2rem .5rem;
+    }
+    .huddle-foot h1 {
+        font-size: 20px;
+    }
+}
+@media screen and (max-width : 710px) {
+    .huddle-foot  {
+        width: 90%;
+        padding: 4rem 1rem;
+    }
+}
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000;
+    color: #fff;
+    padding: 12rem 5rem 10rem 5rem;
+    font-family: 'Poppins', sans-serif;
+}
+footer h1 {
+    color: #ffffff;
+}
+footer a, footer p {
+    color: hsl(208, 29%, 80%);
+}
+.huddle-end-Img{
+    display: flex;
+    align-items: center;
+}
+.huddle-end-Img h1 {
+    font-size: 40px;
+}
+.huddle-end-Img .fa-commenting {
+    font-size: 40px;
+}
+.huddle-end-Img h1 {
+    margin: 0 0 0 .5rem;
+}
+.sec-img {
+    width: 15px;
+}
+.sec-talk {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+}
+.sec-talk p {
+    margin: 0 0 0 1rem;
+}
+.firstSec {
+    flex-basis: 32%;
+}
+.second-sec, .third-sec {
+    flex-basis: 16%;
+    display: flex;
+    flex-direction: column;
+}
+footer a {
+    text-decoration: none;
+    margin: .5rem 0;
+    display: inline-block;
+}
+footer a::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background-color: #ffffff;
+    display: block;
+    margin: auto;
+    transition: 0.5s ease-in-out;
+    transform: translate(-50%, 0);
+}
+footer a:hover::after {
+    width: 30%;
+}
+.fa-brands {
+    font-size: 15px;
+    color: #ffffff;
+    transition: .4s ease-in-out;
+}
+.border {
+    scale: 0.8;
+    padding: .7rem .9rem;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+    margin: 0 .2rem;
+    transition: .4s ease-in-out;
+    cursor: pointer;
+}
+.b-fa {
+    padding: .7rem 1.1rem;
+}
+.b-ins {
+    padding: .7rem 1rem;
+}
+.border:hover {
+    border: 1px solid get(pink);
+}
+.border:hover .fa-brands {
+    color: get(pink);
+}
+.col {
+    display: flex;
+    flex-direction: row;
+}
+.fourth-sec p{
+    font-size: 12px;
+    transform: translate(10px, 200px);
+}
+.spec-sec {
+    width: 40px;
+} 
+@media screen and (max-width : 1050px) {
+    footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .b-fa {
+        margin-left: 0;
+    }
+    .fourth-sec p {
+        transform: translate(10px, 100px);
+    }
+}
+@media screen and (max-width : 400px) {
+    footer {
+        padding: 12rem 1rem 10rem 1rem;
+    }
+}

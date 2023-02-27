@@ -1,0 +1,50 @@
+.scatter-plot {
+    .this-head {
+        background: url(../images/pexels-kaboompics-com-6319.jpg);
+        background-size: cover;
+        .spc-img {
+            .animation {
+                animation: spin 3s linear infinite;
+                @keyframes spin {
+                    from {transform: rotateY(0deg) rotateX(10deg);}
+                    50% {transform: rotateY(180deg) rotateX(20deg);}
+                    to {transform: rotateY(360deg) rotateX(10deg);}
+                }   
+            }
+        }
+    }
+    .explain-frame {
+        @include flex(column, center);
+        margin: 2rem 0;
+        .contain-txt {
+            @include flex(row, center);
+            justify-content: space-between;
+            width: 80%;
+            p{ padding: 0 3rem; }
+            box-shadow: 0 0 15px #bbb;
+            border-radius: 2rem;
+            padding: 2rem;
+            @include media(850px) {
+                flex-direction: column;
+                .c-img {
+                    width: 80%;
+                    padding-top: 1rem;
+                }
+            }
+            @include media(570px) {
+                padding: 1rem;
+                p { padding: 1rem; }
+            }
+        }
+        .contain-frame {
+            @include flex(row, center);
+            width: 100%;
+            padding: 2rem 0 1rem 0;
+            iframe {
+                width: 80%;
+                height: 90vh;
+                border-radius: 20px;
+            }
+        }
+    }
+}
