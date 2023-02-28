@@ -577,7 +577,8 @@ footer a:hover::after {
     z-index: 2;
     transition: 1s ease-in-out !important;
     overflow: hidden;
-    scale: 0;
+    margin: 0;
+    scale: 0 !important;
   }
   .scatter-plot_head .nav_bar .drop-nav .link_btn a {
     border: 0;
@@ -588,7 +589,8 @@ footer a:hover::after {
             animation: none;
   }
   .scatter-plot_head .nav_bar .drop-nav:hover .link_btn {
-    scale: 1;
+    scale: 1 !important;
+
   }
 }
 .scatter-plot_head .head-intro {
