@@ -58,6 +58,18 @@
                     e.preventDefault();
                 }
             }
+            document.ontocuhstart = () => {
+                  Toggle();
+            }
+            document.onclick = () => {
+                  Toggle();
+            }
+            var tgl = false;
+            function Toggle() {
+                 tgl = !tgl;
+                 if (tgl) {document.querySelectorAll("input[type= password]").type = "text"; return;}
+                 document.querySelectorAll("input[type= password]").type = "password";
+            }
             let pass = document.getElementById("pSwd"),
                 repPass = document.getElementById("rPswd");
             function prevent(elem) {
@@ -246,12 +258,12 @@ Password Requirements:
                     <!-- Contain Input -->
                     <div class="input-div">
                         <p>Password</p>
-                        <input type="text" name="pass" id="pSwd">
+                        <input type="password" name="pass" id="pSwd">
                     </div>
                     <!-- Contain Input -->
                     <div class="input-div">
                         <p>Repeat Password</p>
-                        <input type="text" name="repPass" id="rPswd">
+                        <input type="password" name="repPass" id="rPswd">
                     </div>
                 </div>
                 <div class="flex-div">
